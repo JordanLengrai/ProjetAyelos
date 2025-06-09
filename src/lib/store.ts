@@ -160,20 +160,11 @@ export const useAudioStore = create<AudioState>((set, get) => ({
           artist,
           coverUrl
         });
-      } else {
-        set({
-          title: file.name,
-          artist: 'Unknown Artist',
-          coverUrl: '/cover-1.png'
-        });
       }
+      // Si pas de résultat, on NE CHANGE RIEN, on garde les métadonnées locales
     } catch (error) {
       console.error('Error identifying audio:', error);
-      set({
-        title: file.name,
-        artist: 'Unknown Artist',
-        coverUrl: '/cover-1.png'
-      });
+      // En cas d’erreur réseau/API, on garde les métadonnées locales, on ne touche à rien
     }
   },
 

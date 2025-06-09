@@ -493,10 +493,10 @@ return (
         {/* Fixed audio player at bottom */}
         <div className="fixed bottom-0 left-0 right-0 z-50 bg-[#1f1f1f] border-t border-[#343434]">
           <input
-            type="file"
             ref={fileInputRef}
+            type="file"
+            accept="audio/mp3,audio/flac,.mp3,.flac"
             className="hidden"
-            accept="audio/*"
             onChange={handleFileUpload}
           />
           <AudioPlayer />
