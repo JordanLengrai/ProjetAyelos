@@ -8,6 +8,7 @@ interface Lyric {
 }
 
 interface AudioState {
+  resetAllTimestamps: () => void;
   file: File | null;
   title: string;
   artist: string;
@@ -125,6 +126,12 @@ export const useAudioStore = create<AudioState>((set, get) => ({
     set({ lyrics: [] });
   },
 
+  resetAllTimestamps: () => {
+    set((state) => ({
+      lyrics: state.lyrics.map(lyric => ({ ...lyric, timestamp: null }))
+    }));
+  },
+
   identifyAudio: async (file) => {
     const formData = new FormData();
     formData.append('file', file);
@@ -180,15 +187,16 @@ export const useAudioStore = create<AudioState>((set, get) => ({
   importLyricsToSync: () => {
     const { editableLyrics, lyrics } = get();
     const lines = editableLyrics.split('\n').filter(line => line.trim() !== '');
-
-    // Si la ligne à l'index n'existe pas OU si son texte est différent, on crée une nouvelle ligne (nouvel id/timestamp)
+    // Pour chaque nouvelle ligne, on cherche le premier lyrics existant (non déjà utilisé) qui a exactement le même texte
+    const usedOldIndexes = new Set();
     const newLyrics = lines.map((line, index) => {
-      const existing = lyrics[index];
-      if (existing && existing.text === line.trim()) {
-        // Même texte à la même position : on garde tout (id, timestamp)
-        return { ...existing };
+      const foundIdx = lyrics.findIndex((l, i) => l.text === line.trim() && !usedOldIndexes.has(i));
+      if (foundIdx !== -1) {
+        usedOldIndexes.add(foundIdx);
+        // On garde l'id et le timestamp existant
+        return { ...lyrics[foundIdx], text: line.trim() };
       } else {
-        // Nouvelle ligne (ajoutée ou modifiée) : nouveau id, pas de timestamp
+        // Nouvelle ligne (texte jamais vu ou déjà utilisé)
         return {
           id: Date.now() + index + Math.floor(Math.random()*10000),
           text: line.trim(),

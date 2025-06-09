@@ -35,7 +35,8 @@ export const Background = (): JSX.Element => {
     editLyric,
     setIsPlaying,
     seekToTime,
-    adjustLyricTimestamp
+    adjustLyricTimestamp,
+    resetAllTimestamps
   } = useAudioStore();
 
   const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -153,7 +154,20 @@ export const Background = (): JSX.Element => {
     prevSyncedCount.current = syncedCount;
   }, [syncedCount]);
 
-  return (
+  // Trouve l'index de la ligne jouée
+const currentLyricIdx = (() => {
+  let idx = -1;
+  let lastTimestamp = -1;
+  filteredLyrics.forEach((l, i) => {
+    if (l.timestamp !== null && l.timestamp <= currentTime && l.timestamp >= lastTimestamp) {
+      idx = i;
+      lastTimestamp = l.timestamp;
+    }
+  });
+  return idx;
+})();
+
+return (
     <main className="w-full h-screen bg-[#131313] flex flex-col overflow-hidden">
       <div className="relative flex-1 flex flex-col min-h-0">
         <header className="h-[121px] bg-[#1f1f1f] border-b border-[#343434] shadow-[0px_8px_80px_#13131314] flex flex-col flex-shrink-0">
@@ -185,20 +199,20 @@ export const Background = (): JSX.Element => {
 
           <div className="h-[60px] border-t border-[#343434] flex items-center justify-center">
             <Tabs value={activeTab} onValueChange={setActiveTab} className="h-full">
-              <TabsList className="bg-transparent p-0 h-auto">
-                <TabsTrigger
-                  value="sync"
-                  className="h-12 px-6 text-[17px] font-['Segoe_UI-Semibold',Helvetica] text-white bg-[#343434] rounded-[48px]"
-                >
-                  Sync
-                </TabsTrigger>
-                <TabsTrigger
-                  value="lyrics"
-                  className="h-12 px-6 text-[17px] font-['Segoe_UI-Semibold',Helvetica] text-white bg-[#343434] rounded-[48px]"
-                >
-                  Lyrics
-                </TabsTrigger>
-              </TabsList>
+              <TabsList className="bg-transparent p-0 h-auto flex flex-row items-center justify-between gap-x-8 w-full max-w-[340px] mx-auto">
+  <TabsTrigger
+    value="lyrics"
+    className="h-12 px-7 text-[17px] font-['Segoe_UI-Semibold',Helvetica] text-white bg-[#343434] rounded-[48px] shadow-sm hover:shadow-lg transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-[#2e8fff]/40"
+  >
+    Lyrics
+  </TabsTrigger>
+  <TabsTrigger
+    value="sync"
+    className="h-12 px-7 text-[17px] font-['Segoe_UI-Semibold',Helvetica] text-white bg-[#343434] rounded-[48px] shadow-sm hover:shadow-lg transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-[#2e8fff]/40"
+  >
+    Sync
+  </TabsTrigger>
+</TabsList>
             </Tabs>
           </div>
         </header>
@@ -236,7 +250,7 @@ export const Background = (): JSX.Element => {
                       <Button 
                         variant="ghost" 
                         className="text-white hover:bg-[#343434]"
-                        onClick={resetLyrics}
+                        onClick={resetAllTimestamps}
                       >
                         Reset all
                       </Button>
@@ -280,7 +294,7 @@ export const Background = (): JSX.Element => {
                             return (
                               <div 
                                 key={lyric.id} 
-                                className={`flex items-center gap-4 transition-opacity duration-300 ${lyric.timestamp === null ? 'opacity-40' : ''}`}
+                                className={`flex items-center gap-4 transition-opacity duration-300 ${lyric.timestamp === null ? 'opacity-40' : ''} ${index === currentLyricIdx ? 'bg-gradient-to-r from-[#2e8fff]/30 to-transparent' : ''}`}
                                 style={{ opacity: fadeOpacity }}
                               >
                                 {lyric.timestamp !== null && (
