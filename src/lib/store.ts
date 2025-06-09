@@ -181,17 +181,16 @@ export const useAudioStore = create<AudioState>((set, get) => ({
     const { editableLyrics, lyrics } = get();
     const lines = editableLyrics.split('\n').filter(line => line.trim() !== '');
 
-    // Correspondance stricte par index, pas par texte (chaque ligne reste indépendante)
+    // Si la ligne à l'index n'existe pas OU si son texte est différent, on crée une nouvelle ligne (nouvel id/timestamp)
     const newLyrics = lines.map((line, index) => {
       const existing = lyrics[index];
-      if (existing) {
-        return {
-          ...existing,
-          text: line.trim()
-        };
+      if (existing && existing.text === line.trim()) {
+        // Même texte à la même position : on garde tout (id, timestamp)
+        return { ...existing };
       } else {
+        // Nouvelle ligne (ajoutée ou modifiée) : nouveau id, pas de timestamp
         return {
-          id: Date.now() + index,
+          id: Date.now() + index + Math.floor(Math.random()*10000),
           text: line.trim(),
           timestamp: null
         };
