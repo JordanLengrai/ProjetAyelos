@@ -181,10 +181,10 @@ return (
                 />
               )}
               <div className="flex flex-col">
-                <h1 className="font-['Segoe_UI-Semibold',Helvetica] text-white text-[17px] leading-5 truncate max-w-[200px] sm:max-w-none">
+                <h1 className="font-['Segoe UI',Helvetica] font-semibold text-white text-[17px] leading-5 truncate max-w-[200px] sm:max-w-none">
                   {title || "No file selected"}
                 </h1>
-                <p className="font-['Segoe_UI-Regular',Helvetica] text-[#bdbdbd] text-[15px] leading-5 truncate max-w-[200px] sm:max-w-none">
+                <p className="font-['Segoe UI',Helvetica] font-normal text-[#bdbdbd] text-[15px] leading-5 truncate max-w-[200px] sm:max-w-none">
                   {artist || "Upload an audio file to begin"}
                 </p>
               </div>
@@ -199,16 +199,22 @@ return (
 
           <div className="h-[60px] border-t border-[#343434] flex items-center justify-center">
             <Tabs value={activeTab} onValueChange={setActiveTab} className="h-full">
-              <TabsList className="bg-transparent p-0 h-auto flex flex-row items-center justify-between gap-x-8 w-full max-w-[340px] mx-auto">
+              <TabsList className="bg-transparent p-0 h-auto flex flex-row items-center justify-center gap-x-2 w-full mt-1.5">
   <TabsTrigger
     value="lyrics"
-    className="h-12 px-7 text-[17px] font-['Segoe_UI-Semibold',Helvetica] text-white bg-[#343434] rounded-[48px] shadow-sm hover:shadow-lg transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-[#2e8fff]/40"
+    className="h-12 px-7 text-[17px] font-['Segoe UI',Helvetica] font-semibold text-white rounded-[48px] transition-all duration-150
+      data-[state=active]:bg-[#343434] data-[state=active]:text-white
+      data-[state=inactive]:bg-transparent data-[state=inactive]:text-white
+      data-[state=inactive]:hover:bg-[#343434]/60"
   >
     Lyrics
   </TabsTrigger>
   <TabsTrigger
     value="sync"
-    className="h-12 px-7 text-[17px] font-['Segoe_UI-Semibold',Helvetica] text-white bg-[#343434] rounded-[48px] shadow-sm hover:shadow-lg transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-[#2e8fff]/40"
+    className="h-12 px-7 text-[17px] font-['Segoe UI',Helvetica] font-semibold text-white rounded-[48px] transition-all duration-150
+      data-[state=active]:bg-[#343434] data-[state=active]:text-white
+      data-[state=inactive]:bg-transparent data-[state=inactive]:text-white
+      data-[state=inactive]:hover:bg-[#343434]/60"
   >
     Sync
   </TabsTrigger>
@@ -226,21 +232,21 @@ return (
                     <div className="flex items-center gap-2 sm:gap-4 flex-wrap">
                       <Button 
                         variant="ghost" 
-                        className={`text-white hover:bg-[#343434] ${filterMode === 'all' ? 'bg-[#343434]' : ''}`}
+                        className={`text-white hover:text-white hover:bg-[#343434]/60 ${filterMode === 'all' ? 'bg-[#343434]' : ''}`}
                         onClick={() => setFilterMode('all')}
                       >
                         All ({allCount})
                       </Button>
                       <Button 
                         variant="ghost" 
-                        className={`text-white hover:bg-[#343434] ${filterMode === 'unsynced' ? 'bg-[#343434]' : ''}`}
+                        className={`text-white hover:text-white hover:bg-[#343434]/60 ${filterMode === 'unsynced' ? 'bg-[#343434]' : ''}`}
                         onClick={() => setFilterMode('unsynced')}
                       >
                         Unsynced ({unsyncedCount})
                       </Button>
                       <Button 
                         variant="ghost" 
-                        className={`text-white hover:bg-[#343434] ${filterMode === 'synced' ? 'bg-[#343434]' : ''}`}
+                        className={`text-white hover:text-white hover:bg-[#343434]/60 ${filterMode === 'synced' ? 'bg-[#343434]' : ''}`}
                         onClick={() => setFilterMode('synced')}
                       >
                         Synced ({syncedCount})
@@ -249,7 +255,7 @@ return (
                     <div className="flex items-center gap-2 sm:gap-4">
                       <Button 
                         variant="ghost" 
-                        className="text-white hover:bg-[#343434]"
+                        className="text-white hover:text-white hover:bg-[#343434]/60"
                         onClick={resetAllTimestamps}
                       >
                         Reset all
@@ -438,7 +444,7 @@ return (
                               handleRemoveTimestamp(lastSyncedLyric.id);
                             }
                           }}
-                          className="w-24 h-24 rounded-xl bg-[#2a2a2a] hover:bg-[#404040] flex items-center justify-center shadow-2xl border-4 border-gray-600 transition-all duration-200 hover:scale-110 active:scale-95"
+                          className="w-24 h-24 rounded-xl bg-[#343434] hover:bg-[#404040] flex items-center justify-center shadow-2xl border-4 border-gray-600 transition-all duration-200 hover:scale-110 active:scale-95"
                           title="Remove timestamp from last synced lyric"
                         >
                           <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
