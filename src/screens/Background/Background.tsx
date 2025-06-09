@@ -435,7 +435,7 @@ return (
 
                     {/* Static control buttons */}
                     {lyrics.length > 0 && (
-                      <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-8 z-20">
+                      <div className="absolute bottom-24 left-0 right-0 flex justify-center gap-8 z-20">
                         <button
                           onClick={() => {
                             const syncedLyrics = lyrics.filter(l => l.timestamp !== null);
@@ -444,7 +444,7 @@ return (
                               handleRemoveTimestamp(lastSyncedLyric.id);
                             }
                           }}
-                          className="w-24 h-24 rounded-xl bg-[#343434] hover:bg-[#404040] flex items-center justify-center shadow-2xl border-4 border-gray-600 transition-all duration-200 hover:scale-110 active:scale-95"
+                          className="w-[220px] h-[56px] rounded-xl bg-[#343434] hover:bg-[#404040] flex flex-col items-center justify-center shadow-2xl transition-all duration-200 hover:scale-110 active:scale-95"
                           title="Remove timestamp from last synced lyric"
                         >
                           <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -458,7 +458,7 @@ return (
                               handleSyncLyric(currentLyric.id);
                             }
                           }}
-                          className="w-24 h-24 rounded-xl bg-white hover:bg-gray-100 flex items-center justify-center shadow-2xl border-4 border-gray-300 transition-all duration-200 hover:scale-110 active:scale-95"
+                          className="w-[220px] h-[56px] rounded-xl bg-white hover:bg-gray-100 flex flex-col items-center justify-center shadow-2xl transition-all duration-200 hover:scale-110 active:scale-95"
                           title="Add timestamp to next unsynced lyric"
                         >
                           <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
