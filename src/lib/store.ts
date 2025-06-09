@@ -178,13 +178,25 @@ export const useAudioStore = create<AudioState>((set, get) => ({
   },
 
   importLyricsToSync: () => {
-    const { editableLyrics } = get();
+    const { editableLyrics, lyrics } = get();
     const lines = editableLyrics.split('\n').filter(line => line.trim() !== '');
-    const newLyrics = lines.map((line, index) => ({
-      id: Date.now() + index,
-      text: line.trim(),
-      timestamp: null
-    }));
+
+    // Correspondance stricte par index, pas par texte (chaque ligne reste indépendante)
+    const newLyrics = lines.map((line, index) => {
+      const existing = lyrics[index];
+      if (existing) {
+        return {
+          ...existing,
+          text: line.trim()
+        };
+      } else {
+        return {
+          id: Date.now() + index,
+          text: line.trim(),
+          timestamp: null
+        };
+      }
+    });
     set({ lyrics: newLyrics });
   },
 
@@ -197,11 +209,15 @@ export const useAudioStore = create<AudioState>((set, get) => ({
   },
 
   editLyric: (id, newText) => {
-    set((state) => ({
-      lyrics: state.lyrics.map(lyric =>
+    set((state) => {
+      const newLyrics = state.lyrics.map(lyric =>
         lyric.id === id ? { ...lyric, text: newText } : lyric
-      )
-    }));
+      );
+      return {
+        lyrics: newLyrics,
+        editableLyrics: newLyrics.map(l => l.text).join('\n')
+      };
+    });
   },
 
   seekToTime: (time) => {

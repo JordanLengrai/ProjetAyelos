@@ -244,8 +244,7 @@ export const Background = (): JSX.Element => {
                   </div>
 
                   <div className="flex-1 relative overflow-hidden min-h-0">
-                    {/* Top blur gradient */}
-                    <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-[#131313] via-[#131313]/90 to-transparent z-10 pointer-events-none"></div>
+                    
                     
                     {/* Bottom blur gradient - Much larger and stronger */}
                     <div className="absolute bottom-0 left-0 right-0 h-80 bg-gradient-to-t from-[#131313] via-[#131313]/98 via-[#131313]/95 via-[#131313]/90 via-[#131313]/80 via-[#131313]/60 via-[#131313]/40 via-[#131313]/20 to-transparent z-10 pointer-events-none"></div>
@@ -284,88 +283,89 @@ export const Background = (): JSX.Element => {
                                 className={`flex items-center gap-4 transition-opacity duration-300 ${lyric.timestamp === null ? 'opacity-40' : ''}`}
                                 style={{ opacity: fadeOpacity }}
                               >
-                                {/* Remove timestamp button */}
-                                <button
-                                  onClick={() => handleRemoveTimestamp(lyric.id)}
-                                  className="w-8 h-8 rounded-full bg-[#2a2a2a] hover:bg-[#404040] border border-[#555] flex items-center justify-center text-white font-bold transition-all duration-200 hover:scale-110"
-                                  title="Remove timestamp"
-                                >
-                                  ✕
-                                </button>
-
-                                {/* Navigation controls - BACKWARD */}
-                                <div className="flex items-center gap-1">
-                                  <button 
-                                    className="w-8 h-8 rounded bg-[#404040] hover:bg-[#555] border border-[#666] flex items-center justify-center text-white text-xs font-bold transition-all duration-200 hover:scale-110"
-                                    onClick={() => adjustLyricTimestamp(lyric.id, -0.03)}
-                                    disabled={lyric.timestamp === null}
-                                    title="Move timestamp -30ms"
-                                  >
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                      <path d="M11 18V6L5.5 12L11 18ZM18.5 6V18L13 12L18.5 6Z" fill="currentColor"/>
-                                    </svg>
-                                  </button>
-                                  <button 
-                                    className="w-8 h-8 rounded bg-[#555] hover:bg-[#666] border border-[#777] flex items-center justify-center text-white text-xs font-bold transition-all duration-200 hover:scale-110"
-                                    onClick={() => adjustLyricTimestamp(lyric.id, -0.01)}
-                                    disabled={lyric.timestamp === null}
-                                    title="Move timestamp -10ms"
-                                  >
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                      <path d="M15.5 12L9 18V6L15.5 12Z" fill="currentColor"/>
-                                    </svg>
-                                  </button>
-                                </div>
-
-                                {/* Timestamp */}
                                 {lyric.timestamp !== null && (
-                                  <div className="w-20 text-center">
-                                    <span className="font-mono text-sm font-bold text-white">
-                                      {formatTimestamp(lyric.timestamp)}
-                                    </span>
-                                  </div>
+                                  <>
+                                    {/* Remove timestamp button */}
+                                    <button
+                                      onClick={() => handleRemoveTimestamp(lyric.id)}
+                                      className="w-8 h-8 rounded-full bg-[#2a2a2a] hover:bg-[#404040] border border-[#555] flex items-center justify-center text-white font-bold transition-all duration-200 hover:scale-110"
+                                      title="Remove timestamp"
+                                    >
+                                      ✕
+                                    </button>
+
+                                    {/* Navigation controls - BACKWARD */}
+                                    <div className="flex items-center gap-1">
+                                      <button 
+                                        className="w-8 h-8 rounded bg-[#404040] hover:bg-[#555] border border-[#666] flex items-center justify-center text-white text-xs font-bold transition-all duration-200 hover:scale-110"
+                                        onClick={() => adjustLyricTimestamp(lyric.id, -0.03)}
+                                        disabled={lyric.timestamp === null}
+                                        title="Move timestamp -30ms"
+                                      >
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                          <path d="M11 18V6L5.5 12L11 18ZM18.5 6V18L13 12L18.5 6Z" fill="currentColor"/>
+                                        </svg>
+                                      </button>
+                                      <button 
+                                        className="w-8 h-8 rounded bg-[#555] hover:bg-[#666] border border-[#777] flex items-center justify-center text-white text-xs font-bold transition-all duration-200 hover:scale-110"
+                                        onClick={() => adjustLyricTimestamp(lyric.id, -0.01)}
+                                        disabled={lyric.timestamp === null}
+                                        title="Move timestamp -10ms"
+                                      >
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                          <path d="M15.5 12L9 18V6L15.5 12Z" fill="currentColor"/>
+                                        </svg>
+                                      </button>
+                                    </div>
+
+                                    {/* Timestamp */}
+                                    <div className="w-20 text-center">
+                                      <span className="font-mono text-sm font-bold text-white">
+                                        {formatTimestamp(lyric.timestamp)}
+                                      </span>
+                                    </div>
+
+                                    {/* Navigation controls - FORWARD */}
+                                    <div className="flex items-center gap-1">
+                                      <button 
+                                        className="w-8 h-8 rounded bg-[#666] hover:bg-[#777] border border-[#888] flex items-center justify-center text-white text-xs font-bold transition-all duration-200 hover:scale-110"
+                                        onClick={() => adjustLyricTimestamp(lyric.id, 0.01)}
+                                        disabled={lyric.timestamp === null}
+                                        title="Move timestamp +10ms"
+                                      >
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                          <path d="M8.5 12L15 6V18L8.5 12Z" fill="currentColor"/>
+                                        </svg>
+                                      </button>
+                                      <button 
+                                        className="w-8 h-8 rounded bg-[#777] hover:bg-[#888] border border-[#999] flex items-center justify-center text-white text-xs font-bold transition-all duration-200 hover:scale-110"
+                                        onClick={() => adjustLyricTimestamp(lyric.id, 0.03)}
+                                        disabled={lyric.timestamp === null}
+                                        title="Move timestamp +30ms"
+                                      >
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                          <path d="M13 6V18L18.5 12L13 6ZM5.5 18V6L11 12L5.5 18Z" fill="currentColor"/>
+                                        </svg>
+                                      </button>
+                                    </div>
+
+                                    {/* Play button with normal SVG */}
+                                    <button
+                                      onClick={() => handlePlayAtTime(lyric.timestamp)}
+                                      className={`w-10 h-10 rounded-full flex items-center justify-center font-bold transition-all duration-200 hover:scale-110 border-2 ${
+                                        lyric.timestamp !== null 
+                                          ? 'bg-white hover:bg-gray-200 border-gray-300 text-black' 
+                                          : 'bg-[#555] text-white cursor-not-allowed border-[#666]'
+                                      }`}
+                                      disabled={lyric.timestamp === null}
+                                      title={lyric.timestamp !== null ? "Play from this timestamp" : "No timestamp set"}
+                                    >
+                                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M8 5V19L19 12L8 5Z" fill="currentColor"/>
+                                      </svg>
+                                    </button>
+                                  </>
                                 )}
-
-                                {/* Navigation controls - FORWARD */}
-                                <div className="flex items-center gap-1">
-                                  <button 
-                                    className="w-8 h-8 rounded bg-[#666] hover:bg-[#777] border border-[#888] flex items-center justify-center text-white text-xs font-bold transition-all duration-200 hover:scale-110"
-                                    onClick={() => adjustLyricTimestamp(lyric.id, 0.01)}
-                                    disabled={lyric.timestamp === null}
-                                    title="Move timestamp +10ms"
-                                  >
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                      <path d="M8.5 12L15 6V18L8.5 12Z" fill="currentColor"/>
-                                    </svg>
-                                  </button>
-                                  <button 
-                                    className="w-8 h-8 rounded bg-[#777] hover:bg-[#888] border border-[#999] flex items-center justify-center text-white text-xs font-bold transition-all duration-200 hover:scale-110"
-                                    onClick={() => adjustLyricTimestamp(lyric.id, 0.03)}
-                                    disabled={lyric.timestamp === null}
-                                    title="Move timestamp +30ms"
-                                  >
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                      <path d="M13 6V18L18.5 12L13 6ZM5.5 18V6L11 12L5.5 18Z" fill="currentColor"/>
-                                    </svg>
-                                  </button>
-                                </div>
-
-                                {/* Play button with normal SVG */}
-                                <button
-                                  onClick={() => handlePlayAtTime(lyric.timestamp)}
-                                  className={`w-10 h-10 rounded-full flex items-center justify-center font-bold transition-all duration-200 hover:scale-110 border-2 ${
-                                    lyric.timestamp !== null 
-                                      ? 'bg-white hover:bg-gray-200 border-gray-300 text-black' 
-                                      : 'bg-[#555] text-white cursor-not-allowed border-[#666]'
-                                  }`}
-                                  disabled={lyric.timestamp === null}
-                                  title={lyric.timestamp !== null ? "Play from this timestamp" : "No timestamp set"}
-                                >
-                                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M8 5V19L19 12L8 5Z" fill="currentColor"/>
-                                  </svg>
-                                </button>
-
                                 {/* Lyric text */}
                                 <div className="flex-1">
                                   {editingLyricId === lyric.id ? (
@@ -458,7 +458,7 @@ export const Background = (): JSX.Element => {
                     onChange={(e) => setEditableLyrics(e.target.value)}
                     className="flex-1 w-full bg-[#131313] text-white border-none outline-none resize-none font-mono text-sm leading-relaxed p-6"
                     placeholder=""
-                    style={{ border: 'none', boxShadow: 'none', marginTop: '-300px' }}
+                    style={{ border: 'none', boxShadow: 'none', marginTop: '-310px' }}
                   />
                   
                   {/* Bottom info bar */}
