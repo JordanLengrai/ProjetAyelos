@@ -444,7 +444,7 @@ return (
                               handleRemoveTimestamp(lastSyncedLyric.id);
                             }
                           }}
-                          className="w-[220px] h-[56px] rounded-xl bg-[#343434] hover:bg-[#404040] flex flex-col items-center justify-center shadow-2xl transition-all duration-200 hover:scale-110 active:scale-95"
+                          className="w-[220px] h-[56px] rounded-xl bg-[#343434] hover:bg-[#404040] flex flex-col items-center justify-center shadow-2xl transition-all duration-200"
                           title="Remove timestamp from last synced lyric"
                         >
                           <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -458,7 +458,7 @@ return (
                               handleSyncLyric(currentLyric.id);
                             }
                           }}
-                          className="w-[220px] h-[56px] rounded-xl bg-white hover:bg-gray-100 flex flex-col items-center justify-center shadow-2xl transition-all duration-200 hover:scale-110 active:scale-95"
+                          className="w-[220px] h-[56px] rounded-xl bg-white hover:bg-gray-100 flex flex-col items-center justify-center shadow-2xl transition-all duration-200"
                           title="Add timestamp to next unsynced lyric"
                         >
                           <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
