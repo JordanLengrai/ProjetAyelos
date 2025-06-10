@@ -303,9 +303,9 @@ return (
                                 className={`flex items-center gap-4 transition-opacity duration-300 ${lyric.timestamp === null ? 'opacity-40' : ''} ${index === currentLyricIdx ? 'bg-gradient-to-r from-[#2e8fff]/30 to-transparent' : ''}`}
                                 style={{ opacity: fadeOpacity }}
                               >
-                                {lyric.timestamp !== null && (
+                                {lyric.timestamp !== null ? (
   <>
-    {}
+    {/* Croix */}
     <button
       onClick={() => handleRemoveTimestamp(lyric.id)}
       className="w-10 h-10 rounded-full bg-[#343434] hover:bg-[#404040] flex items-center justify-center text-white font-bold transition-all duration-200"
@@ -313,66 +313,52 @@ return (
     >
       ✕
     </button>
-
     {/* Capsule centrale : << < timestamp > >> */}
     <div className="flex flex-row items-center justify-between bg-[#343434] rounded-full" style={{ width: 182, height: 36, minWidth: 182, minHeight: 36, maxWidth: 182, maxHeight: 36, padding: 0 }}>
       <button
         className="w-6 h-6 hover:bg-[#555] flex items-center justify-center text-white text-xs font-bold transition-all duration-200"
         onClick={() => adjustLyricTimestamp(lyric.id, -0.03)}
-        disabled={lyric.timestamp === null}
         title="Move timestamp -30ms"
       >
-        <svg width="11" height="10" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M6.75267 10.5167C6.91156 10.6847 7.0001 10.9071 7.0001 11.1383C7.0001 11.3696 6.91156 11.592 6.75267 11.76C6.44067 12.08 5.948 12.08 5.636 11.76L0.548666 6.54C0.410623 6.39436 0.333679 6.20133 0.333679 6.00067C0.333679 5.8 0.410623 5.60697 0.548666 5.46133L5.636 0.24C5.792 0.0799999 5.99333 0 6.19467 0C6.39533 0 6.59667 0.08 6.75267 0.239333C6.91156 0.407319 7.0001 0.629771 7.0001 0.861C7.0001 1.09223 6.91156 1.31468 6.75267 1.48267L2.49133 5.85533C2.45413 5.89418 2.43336 5.94588 2.43336 5.99967C2.43336 6.05345 2.45413 6.10516 2.49133 6.144L6.75267 10.5167ZM8.49133 6.144C8.45413 6.10516 8.43336 6.05345 8.43336 5.99967C8.43336 5.94588 8.45413 5.89418 8.49133 5.85533L12.7527 1.48267C12.9116 1.31468 13.0001 1.09223 13.0001 0.861C13.0001 0.629771 12.9116 0.407319 12.7527 0.239333C12.6804 0.164163 12.5938 0.104253 12.4979 0.0631441C12.4021 0.0220356 12.299 0.00056429 12.1947 0C11.9933 0 11.792 0.08 11.636 0.239333L6.54867 5.46067C6.41062 5.60631 6.33368 5.79933 6.33368 6C6.33368 6.20067 6.41062 6.39369 6.54867 6.53933L11.636 11.7593C11.948 12.0793 12.4407 12.0793 12.7527 11.7593C12.9116 11.5913 13.0001 11.3689 13.0001 11.1377C13.0001 10.9064 12.9116 10.684 12.7527 10.516L8.49133 6.144Z" fill="white"/>
-</svg>
+        <svg fill="white" height="16" viewBox="0 0 24 24" width="16"><path d="M11.629 18.775a1.357 1.357 0 0 1 0 1.865c-.468.48-1.207.48-1.675 0l-7.631-7.83a1.176 1.176 0 0 1 0-1.618L9.954 3.36c.234-.24.536-.36.838-.36.301 0 .603.12.837.359a1.357 1.357 0 0 1 0 1.865l-6.392 6.559a.313.313 0 0 0 0 .433l6.392 6.559zm2.608-6.559a.313.313 0 0 1 0-.433l6.392-6.559a1.357 1.357 0 0 0 0-1.865A1.17 1.17 0 0 0 19.792 3c-.302 0-.604.12-.838.359l-7.631 7.832a1.176 1.176 0 0 0 0 1.618l7.631 7.83c.468.48 1.207.48 1.675 0a1.357 1.357 0 0 0 0-1.865l-6.392-6.558z"></path></svg>
       </button>
       <button
         className="w-6 h-6 hover:bg-[#666] flex items-center justify-center text-white text-xs font-bold transition-all duration-200"
         onClick={() => adjustLyricTimestamp(lyric.id, -0.01)}
-        disabled={lyric.timestamp === null}
         title="Move timestamp -10ms"
       >
         <svg fill="white" height="16" viewBox="0 0 24 24" width="16"><path d="M14.954 3.359l-7.631 7.832a1.176 1.176 0 0 0 0 1.618l7.631 7.83c.468.48 1.207.48 1.675 0a1.357 1.357 0 0 0 0-1.865l-6.392-6.559a.313.313 0 0 1 0-.433l6.392-6.559a1.357 1.357 0 0 0 0-1.865A1.174 1.174 0 0 0 15.792 3c-.302 0-.604.12-.838.359z"></path></svg>
       </button>
-      <span className="font-mono text-[13px] text-white min-w-[62px] text-center px-1">
-         {formatTimestamp(lyric.timestamp)}
-       </span>
+      <span className="text-white min-w-[62px] text-center px-1" style={{fontFamily: 'Segoe UI, Helvetica', fontSize: 15}}>
+        {formatTimestamp(lyric.timestamp)}
+      </span>
       <button
         className="w-6 h-6 hover:bg-[#777] flex items-center justify-center text-white text-xs transition-all duration-200"
         onClick={() => adjustLyricTimestamp(lyric.id, 0.01)}
-        disabled={lyric.timestamp === null}
         title="Move timestamp +10ms"
       >
-       <svg fill="white" height="16" viewBox="0 0 24 24" width="16"><path d="M9.046 20.641l7.631-7.832c.43-.441.43-1.176 0-1.618L9.046 3.36a1.154 1.154 0 0 0-1.675 0 1.357 1.357 0 0 0 0 1.865l6.391 6.559a.313.313 0 0 1 0 .433l-6.391 6.559a1.357 1.357 0 0 0 0 1.865c.235.239.536.359.837.359.302 0 .604-.12.838-.359z"></path></svg>
+        <svg fill="white" height="16" viewBox="0 0 24 24" width="16"><path d="M9.046 20.641l7.631-7.832c.43-.441.43-1.176 0-1.618L9.046 3.36a1.154 1.154 0 0 0-1.675 0 1.357 1.357 0 0 0 0 1.865l6.391 6.559a.313.313 0 0 1 0 .433l-6.391 6.559a1.357 1.357 0 0 0 0 1.865c.235.239.536.359.837.359.302 0 .604-.12.838-.359z"></path></svg>
       </button>
       <button
         className="w-6 h-6 hover:bg-[#888] flex items-center justify-center text-white text-xs font-bold transition-all duration-200"
         onClick={() => adjustLyricTimestamp(lyric.id, 0.03)}
-        disabled={lyric.timestamp === null}
         title="Move timestamp +30ms"
       >
-        <svg width="11" height="10" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M7.42128 6.53933L2.33395 11.7607C2.26159 11.8359 2.17485 11.8959 2.07889 11.937C1.98292 11.9781 1.87968 11.9995 1.77528 12C1.57462 12 1.37328 11.92 1.21728 11.7607C1.05839 11.5927 0.969849 11.3702 0.969849 11.139C0.969849 10.9078 1.05839 10.6853 1.21728 10.5173L5.47795 6.14466C5.51515 6.10582 5.53592 6.05411 5.53592 6.00033C5.53592 5.94654 5.51515 5.89483 5.47795 5.85599L1.21728 1.48333C1.05839 1.31534 0.969849 1.09289 0.969849 0.861659C0.969849 0.63043 1.05839 0.407977 1.21728 0.239992C1.28917 0.16416 1.37575 0.103767 1.47174 0.0624954C1.56773 0.0212237 1.67113 -6.10352e-05 1.77562 -6.10352e-05C1.88011 -6.10352e-05 1.9835 0.0212237 2.07949 0.0624954C2.17549 0.103767 2.26207 0.16416 2.33395 0.239992L7.42128 5.45999C7.70795 5.75532 7.70795 6.24533 7.42128 6.53933ZM13.4213 5.45999L8.33395 0.239992C8.26207 0.16416 8.17549 0.103767 8.07949 0.0624954C7.9835 0.0212237 7.88011 -6.10352e-05 7.77562 -6.10352e-05C7.67113 -6.10352e-05 7.56773 0.0212237 7.47174 0.0624954C7.37575 0.103767 7.28917 0.16416 7.21728 0.239992C7.05839 0.407977 6.96985 0.63043 6.96985 0.861659C6.96985 1.09289 7.05839 1.31534 7.21728 1.48333L11.4786 5.85599C11.5158 5.89483 11.5366 5.94654 11.5366 6.00033C11.5366 6.05411 11.5158 6.10582 11.4786 6.14466L7.21728 10.5173C7.05839 10.6853 6.96985 10.9078 6.96985 11.139C6.96985 11.3702 7.05839 11.5927 7.21728 11.7607C7.37395 11.92 7.57462 12 7.77528 12C7.97662 12 8.17795 11.92 8.33395 11.7607L13.4213 6.53933C13.708 6.24533 13.708 5.75532 13.4213 5.45999Z" fill="white"/>
-</svg>
+        <svg fill="white" height="16" viewBox="0 0 24 24" width="16"><path d="M12.677 12.809l-7.631 7.832a1.17 1.17 0 0 1-.838.359c-.301 0-.603-.12-.837-.359a1.357 1.357 0 0 1 0-1.865l6.391-6.559a.313.313 0 0 0 0-.433L3.371 5.225a1.357 1.357 0 0 1 0-1.865 1.154 1.154 0 0 1 1.675 0l7.631 7.83c.43.443.43 1.178 0 1.619zm9-1.619l-7.631-7.83a1.154 1.154 0 0 0-1.675 0 1.357 1.357 0 0 0 0 1.865l6.392 6.559a.313.313 0 0 1 0 .433l-6.392 6.559a1.357 1.357 0 0 0 0 1.865c.235.239.536.359.837.359.302 0 .604-.12.838-.359l7.631-7.832c.43-.441.43-1.176 0-1.619z"></path></svg>
       </button>
     </div>
-
-    {}
     <button
       onClick={() => handlePlayAtTime(lyric.timestamp)}
-      className={`w-10 h-10 rounded-full flex items-center justify-center font-bold transition-all duration-200 ${
-        lyric.timestamp !== null 
-          ? 'bg-[#343434] hover:bg-gray-200 text-white' 
-          : 'bg-[#555] text-white cursor-not-allowed'
-      }`}
-      disabled={lyric.timestamp === null}
-      title={lyric.timestamp !== null ? "Play from this timestamp" : "No timestamp set"}
+      className={`w-10 h-10 rounded-full flex items-center justify-center font-bold transition-all duration-200 bg-[#343434] hover:bg-gray-200 text-white`}
+      title="Play from this timestamp"
     >
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M8 5V19L19 12L8 5Z" fill="currentColor"/>
       </svg>
     </button>
   </>
+) : (
+  <div style={{ width: 10 + 182 + 10, minWidth: 292, maxWidth: 202, height: 36, display: 'flex', alignItems: 'center' }}></div>
 )}
                                 {}
                                 <div className="flex-1">
