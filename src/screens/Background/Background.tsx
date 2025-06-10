@@ -308,7 +308,7 @@ return (
     {/* Croix */}
     <button
       onClick={() => handleRemoveTimestamp(lyric.id)}
-      className="w-10 h-10 rounded-full bg-[#343434] hover:bg-[#404040] flex items-center justify-center text-white font-bold transition-all duration-200"
+      className="w-9 h-9 rounded-full bg-[#343434] hover:bg-[#404040] flex items-center justify-center text-white font-bold transition-all duration-200"
       title="Remove timestamp"
     >
       ✕
@@ -349,7 +349,7 @@ return (
     </div>
     <button
       onClick={() => handlePlayAtTime(lyric.timestamp)}
-      className={`w-10 h-10 rounded-full flex items-center justify-center font-bold transition-all duration-200 bg-[#343434] hover:bg-gray-200 text-white`}
+      className={`w-9 h-9 rounded-full flex items-center justify-center font-bold transition-all duration-200 bg-[#343434] hover:bg-gray-200 text-white`}
       title="Play from this timestamp"
     >
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
