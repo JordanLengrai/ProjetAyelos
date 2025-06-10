@@ -190,7 +190,7 @@ return (
               </div>
             </div>
             <Button 
-              className="bg-white text-[#131313] rounded-lg h-12 px-6 hidden sm:block"
+              className="bg-white text-[#131313] hover:bg-[#f5f5f5] rounded-lg h-12 px-6 hidden sm:block"
               onClick={handleFinish}
             >
               Finish
@@ -476,7 +476,7 @@ return (
         </div>
 
         {}
-        <div className="fixed bottom-0 left-0 right-0 z-50 bg-[#1f1f1f] border-t border-[#343434]">
+        <div className="fixed bottom-0 left-0 right-0 z-50 bg-[#f5f5f5] border-t border-[#343434]">
           <input
             ref={fileInputRef}
             type="file"
@@ -489,7 +489,7 @@ return (
 
         {}
         <Button 
-          className="fixed bottom-20 right-4 bg-white hover:bg-[#f5f5f5] text-black rounded-lg h-12 px-6 sm:hidden z-40 "
+          className="fixed bottom-20 right-4 bg-white hover:bg-[#f5f5f5] text-black rounded-lg h-12 px-6  z-40 "
           onClick={handleFinish}
         >
           Finish
