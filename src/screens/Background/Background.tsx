@@ -358,7 +358,7 @@ return (
     </button>
   </>
 ) : (
-  <div style={{ width: 10 + 182 + 10, minWidth: 292, maxWidth: 202, height: 36, display: 'flex', alignItems: 'center' }}></div>
+  <div style={{ width: 92, minWidth: 92, maxWidth: 202, height: 36, display: 'flex', alignItems: 'center' }}></div>
 )}
                                 {}
                                 <div className="flex-1">
