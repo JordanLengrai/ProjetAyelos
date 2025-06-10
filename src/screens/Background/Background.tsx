@@ -119,7 +119,7 @@ export const Background = (): JSX.Element => {
     URL.revokeObjectURL(url);
   };
 
-  // Filter lyrics based on selected mode
+  
   const filteredLyrics = lyrics.filter(lyric => {
     switch (filterMode) {
       case 'unsynced':
@@ -135,17 +135,17 @@ export const Background = (): JSX.Element => {
   const unsyncedCount = lyrics.filter(l => l.timestamp === null).length;
   const syncedCount = lyrics.filter(l => l.timestamp !== null).length;
 
-  // Scroll auto sync lyrics container to bottom when new timestamp is added
+  
   useEffect(() => {
     if (!syncLyricsContainerRef.current) return;
     if (syncedCount > prevSyncedCount.current) {
-      // Ajout : scroll vers le bas
+      
       syncLyricsContainerRef.current.scrollBy({
         top: 40,
         behavior: 'smooth',
       });
     } else if (syncedCount < prevSyncedCount.current) {
-      // Suppression : scroll vers le haut
+      
       syncLyricsContainerRef.current.scrollBy({
         top: -40,
         behavior: 'smooth',
@@ -154,7 +154,7 @@ export const Background = (): JSX.Element => {
     prevSyncedCount.current = syncedCount;
   }, [syncedCount]);
 
-  // Trouve l'index de la ligne jouée
+  
 const currentLyricIdx = (() => {
   let idx = -1;
   let lastTimestamp = -1;
@@ -266,7 +266,7 @@ return (
                   <div className="flex-1 relative overflow-hidden min-h-0">
                     
                     
-                    {/* Bottom blur gradient - Much larger and stronger */}
+                    {}
                     <div className="absolute bottom-0 left-0 right-0 h-80 bg-gradient-to-t from-[#131313] via-[#131313]/98 via-[#131313]/95 via-[#131313]/90 via-[#131313]/80 via-[#131313]/60 via-[#131313]/40 via-[#131313]/20 to-transparent z-10 pointer-events-none"></div>
                     
                     <div className="h-full overflow-y-auto px-6 py-8 pb-80" ref={syncLyricsContainerRef}>
@@ -304,89 +304,81 @@ return (
                                 style={{ opacity: fadeOpacity }}
                               >
                                 {lyric.timestamp !== null && (
-                                  <>
-                                    {/* Remove timestamp button */}
-                                    <button
-                                      onClick={() => handleRemoveTimestamp(lyric.id)}
-                                      className="w-8 h-8 rounded-full bg-[#2a2a2a] hover:bg-[#404040] border border-[#555] flex items-center justify-center text-white font-bold transition-all duration-200 hover:scale-110"
-                                      title="Remove timestamp"
-                                    >
-                                      ✕
-                                    </button>
+  <>
+    {}
+    <button
+      onClick={() => handleRemoveTimestamp(lyric.id)}
+      className="w-10 h-10 rounded-full bg-[#343434] hover:bg-[#404040] flex items-center justify-center text-white font-bold transition-all duration-200"
+      title="Remove timestamp"
+    >
+      ✕
+    </button>
 
-                                    {/* Navigation controls - BACKWARD */}
-                                    <div className="flex items-center gap-1">
-                                      <button 
-                                        className="w-8 h-8 rounded bg-[#404040] hover:bg-[#555] border border-[#666] flex items-center justify-center text-white text-xs font-bold transition-all duration-200 hover:scale-110"
-                                        onClick={() => adjustLyricTimestamp(lyric.id, -0.03)}
-                                        disabled={lyric.timestamp === null}
-                                        title="Move timestamp -30ms"
-                                      >
-                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                          <path d="M11 18V6L5.5 12L11 18ZM18.5 6V18L13 12L18.5 6Z" fill="currentColor"/>
-                                        </svg>
-                                      </button>
-                                      <button 
-                                        className="w-8 h-8 rounded bg-[#555] hover:bg-[#666] border border-[#777] flex items-center justify-center text-white text-xs font-bold transition-all duration-200 hover:scale-110"
-                                        onClick={() => adjustLyricTimestamp(lyric.id, -0.01)}
-                                        disabled={lyric.timestamp === null}
-                                        title="Move timestamp -10ms"
-                                      >
-                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                          <path d="M15.5 12L9 18V6L15.5 12Z" fill="currentColor"/>
-                                        </svg>
-                                      </button>
-                                    </div>
+    {/* Capsule centrale : << < timestamp > >> */}
+    <div className="flex flex-row items-center justify-between bg-[#343434] rounded-full" style={{ width: 182, height: 36, minWidth: 182, minHeight: 36, maxWidth: 182, maxHeight: 36, padding: 0 }}>
+      <button
+        className="w-6 h-6 hover:bg-[#555] flex items-center justify-center text-white text-xs font-bold transition-all duration-200"
+        onClick={() => adjustLyricTimestamp(lyric.id, -0.03)}
+        disabled={lyric.timestamp === null}
+        title="Move timestamp -30ms"
+      >
+        <svg width="11" height="10" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M6.75267 10.5167C6.91156 10.6847 7.0001 10.9071 7.0001 11.1383C7.0001 11.3696 6.91156 11.592 6.75267 11.76C6.44067 12.08 5.948 12.08 5.636 11.76L0.548666 6.54C0.410623 6.39436 0.333679 6.20133 0.333679 6.00067C0.333679 5.8 0.410623 5.60697 0.548666 5.46133L5.636 0.24C5.792 0.0799999 5.99333 0 6.19467 0C6.39533 0 6.59667 0.08 6.75267 0.239333C6.91156 0.407319 7.0001 0.629771 7.0001 0.861C7.0001 1.09223 6.91156 1.31468 6.75267 1.48267L2.49133 5.85533C2.45413 5.89418 2.43336 5.94588 2.43336 5.99967C2.43336 6.05345 2.45413 6.10516 2.49133 6.144L6.75267 10.5167ZM8.49133 6.144C8.45413 6.10516 8.43336 6.05345 8.43336 5.99967C8.43336 5.94588 8.45413 5.89418 8.49133 5.85533L12.7527 1.48267C12.9116 1.31468 13.0001 1.09223 13.0001 0.861C13.0001 0.629771 12.9116 0.407319 12.7527 0.239333C12.6804 0.164163 12.5938 0.104253 12.4979 0.0631441C12.4021 0.0220356 12.299 0.00056429 12.1947 0C11.9933 0 11.792 0.08 11.636 0.239333L6.54867 5.46067C6.41062 5.60631 6.33368 5.79933 6.33368 6C6.33368 6.20067 6.41062 6.39369 6.54867 6.53933L11.636 11.7593C11.948 12.0793 12.4407 12.0793 12.7527 11.7593C12.9116 11.5913 13.0001 11.3689 13.0001 11.1377C13.0001 10.9064 12.9116 10.684 12.7527 10.516L8.49133 6.144Z" fill="white"/>
+</svg>
+      </button>
+      <button
+        className="w-6 h-6 hover:bg-[#666] flex items-center justify-center text-white text-xs font-bold transition-all duration-200"
+        onClick={() => adjustLyricTimestamp(lyric.id, -0.01)}
+        disabled={lyric.timestamp === null}
+        title="Move timestamp -10ms"
+      >
+        <svg width="9" height="10" viewBox="0 0 11 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M8.62997 0.239333L1.16431 5.46067C0.961731 5.60631 0.848816 5.79933 0.848816 6C0.848816 6.20067 0.961731 6.39369 1.16431 6.53933L8.62997 11.7593C9.08783 12.0793 9.81082 12.0793 10.2687 11.7593C10.5019 11.5913 10.6318 11.3689 10.6318 11.1377C10.6318 10.9064 10.5019 10.684 10.2687 10.516L4.01517 6.14333C3.96058 6.10449 3.9301 6.05278 3.9301 5.999C3.9301 5.94522 3.96058 5.89351 4.01517 5.85467L10.2687 1.482C10.5019 1.31401 10.6318 1.09156 10.6318 0.860333C10.6318 0.629104 10.5019 0.406652 10.2687 0.238667C10.1624 0.163738 10.0352 0.10403 9.89458 0.0630461C9.75396 0.0220622 9.60275 0.00062764 9.44981 0C9.15436 0 8.8589 0.08 8.62997 0.239333Z" fill="white"/>
+</svg>
+      </button>
+      <span className="font-mono text-[13px] text-white min-w-[62px] text-center px-1">
+         {formatTimestamp(lyric.timestamp)}
+       </span>
+      <button
+        className="w-6 h-6 hover:bg-[#777] flex items-center justify-center text-white text-xs transition-all duration-200"
+        onClick={() => adjustLyricTimestamp(lyric.id, 0.01)}
+        disabled={lyric.timestamp === null}
+        title="Move timestamp +10ms"
+      >
+        <svg width="9" height="10" viewBox="0 0 11 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M2.33373 11.7607L9.80257 6.53933C10.2234 6.24533 10.2234 5.75533 9.80257 5.46066L2.33373 0.239992C2.22819 0.16416 2.10108 0.103767 1.96015 0.0624954C1.81922 0.0212237 1.66743 -6.10352e-05 1.51402 -6.10352e-05C1.36062 -6.10352e-05 1.20883 0.0212237 1.0679 0.0624954C0.926968 0.103767 0.799859 0.16416 0.694322 0.239992C0.461043 0.407977 0.331055 0.63043 0.331055 0.861659C0.331055 1.09289 0.461043 1.31534 0.694322 1.48333L6.94951 5.85599C7.00413 5.89483 7.03462 5.94654 7.03462 6.00033C7.03462 6.05411 7.00413 6.10582 6.94951 6.14466L0.694322 10.5173C0.461043 10.6853 0.331055 10.9078 0.331055 11.139C0.331055 11.3702 0.461043 11.5927 0.694322 11.7607C0.924328 11.92 1.21893 12 1.51354 12C1.80912 12 2.1047 11.92 2.33373 11.7607Z" fill="white"/>
+</svg>
+      </button>
+      <button
+        className="w-6 h-6 hover:bg-[#888] flex items-center justify-center text-white text-xs font-bold transition-all duration-200"
+        onClick={() => adjustLyricTimestamp(lyric.id, 0.03)}
+        disabled={lyric.timestamp === null}
+        title="Move timestamp +30ms"
+      >
+        <svg width="11" height="10" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M7.42128 6.53933L2.33395 11.7607C2.26159 11.8359 2.17485 11.8959 2.07889 11.937C1.98292 11.9781 1.87968 11.9995 1.77528 12C1.57462 12 1.37328 11.92 1.21728 11.7607C1.05839 11.5927 0.969849 11.3702 0.969849 11.139C0.969849 10.9078 1.05839 10.6853 1.21728 10.5173L5.47795 6.14466C5.51515 6.10582 5.53592 6.05411 5.53592 6.00033C5.53592 5.94654 5.51515 5.89483 5.47795 5.85599L1.21728 1.48333C1.05839 1.31534 0.969849 1.09289 0.969849 0.861659C0.969849 0.63043 1.05839 0.407977 1.21728 0.239992C1.28917 0.16416 1.37575 0.103767 1.47174 0.0624954C1.56773 0.0212237 1.67113 -6.10352e-05 1.77562 -6.10352e-05C1.88011 -6.10352e-05 1.9835 0.0212237 2.07949 0.0624954C2.17549 0.103767 2.26207 0.16416 2.33395 0.239992L7.42128 5.45999C7.70795 5.75532 7.70795 6.24533 7.42128 6.53933ZM13.4213 5.45999L8.33395 0.239992C8.26207 0.16416 8.17549 0.103767 8.07949 0.0624954C7.9835 0.0212237 7.88011 -6.10352e-05 7.77562 -6.10352e-05C7.67113 -6.10352e-05 7.56773 0.0212237 7.47174 0.0624954C7.37575 0.103767 7.28917 0.16416 7.21728 0.239992C7.05839 0.407977 6.96985 0.63043 6.96985 0.861659C6.96985 1.09289 7.05839 1.31534 7.21728 1.48333L11.4786 5.85599C11.5158 5.89483 11.5366 5.94654 11.5366 6.00033C11.5366 6.05411 11.5158 6.10582 11.4786 6.14466L7.21728 10.5173C7.05839 10.6853 6.96985 10.9078 6.96985 11.139C6.96985 11.3702 7.05839 11.5927 7.21728 11.7607C7.37395 11.92 7.57462 12 7.77528 12C7.97662 12 8.17795 11.92 8.33395 11.7607L13.4213 6.53933C13.708 6.24533 13.708 5.75532 13.4213 5.45999Z" fill="white"/>
+</svg>
+      </button>
+    </div>
 
-                                    {/* Timestamp */}
-                                    <div className="w-20 text-center">
-                                      <span className="font-mono text-sm font-bold text-white">
-                                        {formatTimestamp(lyric.timestamp)}
-                                      </span>
-                                    </div>
-
-                                    {/* Navigation controls - FORWARD */}
-                                    <div className="flex items-center gap-1">
-                                      <button 
-                                        className="w-8 h-8 rounded bg-[#666] hover:bg-[#777] border border-[#888] flex items-center justify-center text-white text-xs font-bold transition-all duration-200 hover:scale-110"
-                                        onClick={() => adjustLyricTimestamp(lyric.id, 0.01)}
-                                        disabled={lyric.timestamp === null}
-                                        title="Move timestamp +10ms"
-                                      >
-                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                          <path d="M8.5 12L15 6V18L8.5 12Z" fill="currentColor"/>
-                                        </svg>
-                                      </button>
-                                      <button 
-                                        className="w-8 h-8 rounded bg-[#777] hover:bg-[#888] border border-[#999] flex items-center justify-center text-white text-xs font-bold transition-all duration-200 hover:scale-110"
-                                        onClick={() => adjustLyricTimestamp(lyric.id, 0.03)}
-                                        disabled={lyric.timestamp === null}
-                                        title="Move timestamp +30ms"
-                                      >
-                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                          <path d="M13 6V18L18.5 12L13 6ZM5.5 18V6L11 12L5.5 18Z" fill="currentColor"/>
-                                        </svg>
-                                      </button>
-                                    </div>
-
-                                    {/* Play button with normal SVG */}
-                                    <button
-                                      onClick={() => handlePlayAtTime(lyric.timestamp)}
-                                      className={`w-10 h-10 rounded-full flex items-center justify-center font-bold transition-all duration-200 hover:scale-110 border-2 ${
-                                        lyric.timestamp !== null 
-                                          ? 'bg-white hover:bg-gray-200 border-gray-300 text-black' 
-                                          : 'bg-[#555] text-white cursor-not-allowed border-[#666]'
-                                      }`}
-                                      disabled={lyric.timestamp === null}
-                                      title={lyric.timestamp !== null ? "Play from this timestamp" : "No timestamp set"}
-                                    >
-                                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M8 5V19L19 12L8 5Z" fill="currentColor"/>
-                                      </svg>
-                                    </button>
-                                  </>
-                                )}
-                                {/* Lyric text */}
+    {}
+    <button
+      onClick={() => handlePlayAtTime(lyric.timestamp)}
+      className={`w-10 h-10 rounded-full flex items-center justify-center font-bold transition-all duration-200 ${
+        lyric.timestamp !== null 
+          ? 'bg-[#343434] hover:bg-gray-200 text-white' 
+          : 'bg-[#555] text-white cursor-not-allowed'
+      }`}
+      disabled={lyric.timestamp === null}
+      title={lyric.timestamp !== null ? "Play from this timestamp" : "No timestamp set"}
+    >
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 5V19L19 12L8 5Z" fill="currentColor"/>
+      </svg>
+    </button>
+  </>
+)}
+                                {}
                                 <div className="flex-1">
                                   {editingLyricId === lyric.id ? (
                                     <div className="flex items-center gap-2">
@@ -433,7 +425,7 @@ return (
                       )}
                     </div>
 
-                    {/* Static control buttons */}
+                    {}
                     {lyrics.length > 0 && (
                       <div className="absolute bottom-24 left-0 right-0 flex justify-center gap-8 z-20">
                         <button
@@ -447,9 +439,9 @@ return (
                           className="w-[220px] h-[56px] rounded-xl bg-[#343434] hover:bg-[#404040] flex flex-col items-center justify-center shadow-2xl transition-all duration-200"
                           title="Remove timestamp from last synced lyric"
                         >
-                          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M17 14L12 9L7 14H17Z" fill="#FFFFFF" stroke="#FFFFFF" strokeWidth="2"/>
-                          </svg>
+                          <svg width="24" height="11" viewBox="0 0 24 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M1.303 6.569L10.88 1.008C11.184 0.830258 11.5299 0.736716 11.882 0.737C11.933 0.737 11.982 0.753 12.033 0.756C12.083 0.752 12.132 0.737 12.182 0.737C12.517 0.737 12.857 0.821 13.169 0.999L22.878 6.526C23.3251 6.7955 23.6491 7.22904 23.781 7.73413C23.9129 8.23921 23.8422 8.77585 23.584 9.22954C23.3258 9.68322 22.9005 10.018 22.3989 10.1625C21.8972 10.307 21.359 10.2498 20.899 10.003L12.039 4.959L3.31 10.028C2.8521 10.2808 2.31338 10.3442 1.80932 10.2045C1.30527 10.0648 0.87598 9.73324 0.613481 9.28083C0.350981 8.82842 0.276157 8.29118 0.405049 7.78426C0.53394 7.27734 0.856287 6.84108 1.303 6.569Z" fill="#828282"/>
+</svg> 
                         </button>
                         <button
                           onClick={() => {
@@ -461,9 +453,9 @@ return (
                           className="w-[220px] h-[56px] rounded-xl bg-white hover:bg-gray-100 flex flex-col items-center justify-center shadow-2xl transition-all duration-200"
                           title="Add timestamp to next unsynced lyric"
                         >
-                          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7 10L12 15L17 10H7Z" fill="#000000" stroke="#000000" strokeWidth="2"/>
-                          </svg>
+                          <svg width="24" height="11" viewBox="0 0 24 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M22.894 4.468L13.317 10.029C13.013 10.2067 12.6671 10.3003 12.315 10.3C12.264 10.3 12.215 10.284 12.164 10.281C12.114 10.285 12.065 10.3 12.015 10.3C11.68 10.3 11.34 10.216 11.028 10.038L1.319 4.511C0.871925 4.2415 0.547863 3.80795 0.415962 3.30287C0.284061 2.79778 0.354765 2.26115 0.612988 1.80746C0.871212 1.35378 1.29651 1.01896 1.79814 0.874461C2.29976 0.729959 2.838 0.787209 3.29801 1.034L12.158 6.078L20.887 1.009C21.3449 0.756199 21.8836 0.692845 22.3877 0.832512C22.8917 0.97218 23.321 1.30375 23.5835 1.75616C23.846 2.20857 23.9208 2.74582 23.792 3.25274C23.6631 3.75966 23.3407 4.19591 22.894 4.468Z" fill="#131313"/>
+</svg>
                         </button>
                       </div>
                     )}
@@ -472,7 +464,7 @@ return (
               </TabsContent>
               <TabsContent value="lyrics" className="flex-1 m-0 min-h-0">
                 <div className="h-full flex flex-col min-h-0">
-                  {/* Full-screen textarea without borders */}
+                  
                   <textarea
                     value={editableLyrics}
                     onChange={(e) => setEditableLyrics(e.target.value)}
@@ -481,7 +473,7 @@ return (
                     style={{ border: 'none', boxShadow: 'none', marginTop: '-310px' }}
                   />
                   
-                  {/* Bottom info bar */}
+                  {}
                   <div className="flex items-center justify-between p-4 border-t border-[#343434] flex-shrink-0">
                     <div className="text-sm text-[#757575]">
                       Tip: Each line will automatically be imported to the Sync tab as you type. No need to manually import anymore!
@@ -496,7 +488,7 @@ return (
           </div>
         </div>
 
-        {/* Fixed audio player at bottom */}
+        {}
         <div className="fixed bottom-0 left-0 right-0 z-50 bg-[#1f1f1f] border-t border-[#343434]">
           <input
             ref={fileInputRef}
@@ -508,7 +500,7 @@ return (
           <AudioPlayer />
         </div>
 
-        {/* Mobile finish button */}
+        {}
         <Button 
           className="fixed bottom-20 right-4 bg-white text-[#131313] rounded-lg h-12 px-6 sm:hidden z-40"
           onClick={handleFinish}

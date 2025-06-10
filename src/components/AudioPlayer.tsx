@@ -23,7 +23,6 @@ export const AudioPlayer: React.FC = () => {
     const audio = audioRef.current;
     audio.src = URL.createObjectURL(file);
     
-    // Store audio element reference in store
     setAudioElement(audio);
 
     const updateTime = () => {
