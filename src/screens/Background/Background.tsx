@@ -317,14 +317,14 @@ return (
     <div className="flex flex-row items-center justify-between bg-[#343434] rounded-full" style={{ width: 182, height: 36, minWidth: 182, minHeight: 36, maxWidth: 182, maxHeight: 36, padding: 0 }}>
       <button
         className="w-6 h-6 hover:bg-[#555] flex items-center justify-center text-white text-xs font-bold transition-all duration-200 ml-2"
-        onClick={() => adjustLyricTimestamp(lyric.id, -0.03)}
+        onClick={() => adjustLyricTimestamp(lyric.id, -0.30)}
         title="Move timestamp -30ms"
       >
         <svg fill="white" height="16" viewBox="0 0 24 24" width="16"><path d="M11.629 18.775a1.357 1.357 0 0 1 0 1.865c-.468.48-1.207.48-1.675 0l-7.631-7.83a1.176 1.176 0 0 1 0-1.618L9.954 3.36c.234-.24.536-.36.838-.36.301 0 .603.12.837.359a1.357 1.357 0 0 1 0 1.865l-6.392 6.559a.313.313 0 0 0 0 .433l6.392 6.559zm2.608-6.559a.313.313 0 0 1 0-.433l6.392-6.559a1.357 1.357 0 0 0 0-1.865A1.17 1.17 0 0 0 19.792 3c-.302 0-.604.12-.838.359l-7.631 7.832a1.176 1.176 0 0 0 0 1.618l7.631 7.83c.468.48 1.207.48 1.675 0a1.357 1.357 0 0 0 0-1.865l-6.392-6.558z"></path></svg>
       </button>
       <button
         className="w-6 h-6 hover:bg-[#666] flex items-center justify-center text-white text-xs font-bold transition-all duration-200"
-        onClick={() => adjustLyricTimestamp(lyric.id, -0.01)}
+        onClick={() => adjustLyricTimestamp(lyric.id, -0.10)}
         title="Move timestamp -10ms"
       >
         <svg fill="white" height="16" viewBox="0 0 24 24" width="16"><path d="M14.954 3.359l-7.631 7.832a1.176 1.176 0 0 0 0 1.618l7.631 7.83c.468.48 1.207.48 1.675 0a1.357 1.357 0 0 0 0-1.865l-6.392-6.559a.313.313 0 0 1 0-.433l6.392-6.559a1.357 1.357 0 0 0 0-1.865A1.174 1.174 0 0 0 15.792 3c-.302 0-.604.12-.838.359z"></path></svg>
@@ -334,14 +334,14 @@ return (
       </span>
       <button
         className="w-6 h-6 hover:bg-[#777] flex items-center justify-center text-white text-xs transition-all duration-200"
-        onClick={() => adjustLyricTimestamp(lyric.id, 0.01)}
+        onClick={() => adjustLyricTimestamp(lyric.id, 0.10)}
         title="Move timestamp +10ms"
       >
         <svg fill="white" height="16" viewBox="0 0 24 24" width="16"><path d="M9.046 20.641l7.631-7.832c.43-.441.43-1.176 0-1.618L9.046 3.36a1.154 1.154 0 0 0-1.675 0 1.357 1.357 0 0 0 0 1.865l6.391 6.559a.313.313 0 0 1 0 .433l-6.391 6.559a1.357 1.357 0 0 0 0 1.865c.235.239.536.359.837.359.302 0 .604-.12.838-.359z"></path></svg>
       </button>
       <button
         className="w-6 h-6 hover:bg-[#888] flex items-center justify-center text-white text-xs font-bold transition-all duration-200 mr-2"
-        onClick={() => adjustLyricTimestamp(lyric.id, 0.03)}
+        onClick={() => adjustLyricTimestamp(lyric.id, 0.30)}
         title="Move timestamp +30ms"
       >
         <svg fill="white" height="16" viewBox="0 0 24 24" width="16"><path d="M12.677 12.809l-7.631 7.832a1.17 1.17 0 0 1-.838.359c-.301 0-.603-.12-.837-.359a1.357 1.357 0 0 1 0-1.865l6.391-6.559a.313.313 0 0 0 0-.433L3.371 5.225a1.357 1.357 0 0 1 0-1.865 1.154 1.154 0 0 1 1.675 0l7.631 7.83c.43.443.43 1.178 0 1.619zm9-1.619l-7.631-7.83a1.154 1.154 0 0 0-1.675 0 1.357 1.357 0 0 0 0 1.865l6.392 6.559a.313.313 0 0 1 0 .433l-6.392 6.559a1.357 1.357 0 0 0 0 1.865c.235.239.536.359.837.359.302 0 .604-.12.838-.359l7.631-7.832c.43-.441.43-1.176 0-1.619z"></path></svg>
