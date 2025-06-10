@@ -316,7 +316,7 @@ return (
     {/* Capsule centrale : << < timestamp > >> */}
     <div className="flex flex-row items-center justify-between bg-[#343434] rounded-full" style={{ width: 182, height: 36, minWidth: 182, minHeight: 36, maxWidth: 182, maxHeight: 36, padding: 0 }}>
       <button
-        className="w-6 h-6 hover:bg-[#555] flex items-center justify-center text-white text-xs font-bold transition-all duration-200"
+        className="w-6 h-6 hover:bg-[#555] flex items-center justify-center text-white text-xs font-bold transition-all duration-200 ml-2"
         onClick={() => adjustLyricTimestamp(lyric.id, -0.03)}
         title="Move timestamp -30ms"
       >
@@ -340,7 +340,7 @@ return (
         <svg fill="white" height="16" viewBox="0 0 24 24" width="16"><path d="M9.046 20.641l7.631-7.832c.43-.441.43-1.176 0-1.618L9.046 3.36a1.154 1.154 0 0 0-1.675 0 1.357 1.357 0 0 0 0 1.865l6.391 6.559a.313.313 0 0 1 0 .433l-6.391 6.559a1.357 1.357 0 0 0 0 1.865c.235.239.536.359.837.359.302 0 .604-.12.838-.359z"></path></svg>
       </button>
       <button
-        className="w-6 h-6 hover:bg-[#888] flex items-center justify-center text-white text-xs font-bold transition-all duration-200"
+        className="w-6 h-6 hover:bg-[#888] flex items-center justify-center text-white text-xs font-bold transition-all duration-200 mr-2"
         onClick={() => adjustLyricTimestamp(lyric.id, 0.03)}
         title="Move timestamp +30ms"
       >
@@ -392,9 +392,14 @@ return (
                                       </Button>
                                     </div>
                                   ) : (
-                                    <span 
+                                    <span
                                       className="text-white cursor-pointer hover:text-gray-300"
                                       onClick={() => handleEditLyric(lyric)}
+                                      style={{
+                                        fontFamily: `'Segoe UI Semibold',`,
+                                        marginLeft: lyric.timestamp === null ? 202 : undefined,
+                                        opacity: lyric.timestamp === null ? 0.45 : 1,
+                                      }}
                                     >
                                       {lyric.text}
                                     </span>
