@@ -106,13 +106,13 @@ export const AudioPlayer: React.FC = () => {
           className="h-6 w-6 p-0"
           onClick={() => fileInputRef.current?.click()}
         >
-          <div className="relative h-6 w-6 bg-[url(/frame-1.svg)] bg-[100%_100%]" />
+          <div className="relative h-6 w-6 bg-[url(/frame-1.svg)] hover:bg-[#404040]" />
         </Button>
 
         <Button
           variant="ghost"
           size="icon"
-          className="h-10 w-10 p-0 text-white hover:bg-[#404040] rounded-full flex items-center justify-center"
+          className="h-12 w-12 p-0 text-white hover:bg-[#404040] rounded-full flex items-center justify-center"
           onClick={handlePlayPause}
         >
          {isPlaying ? (
@@ -155,7 +155,7 @@ export const AudioPlayer: React.FC = () => {
   <Button
     variant="ghost"
     size="icon"
-    className="h-6 w-6 p-0"
+    className="h-6 w-6 p-0 hover:bg-[#404040]"
     onClick={() => skipTime(-3)}
   >
     {/* SVG pour reculer de 3s (déjà existant) */}
@@ -166,7 +166,7 @@ export const AudioPlayer: React.FC = () => {
   <Button
     variant="ghost"
     size="icon"
-    className="h-6 w-6 p-0"
+    className="h-6 w-6 p-0 hover:bg-[#404040]"
     onClick={() => skipTime(3)}
   >
     {/* SVG pour avancer de 3s (fourni par l’utilisateur) */}
