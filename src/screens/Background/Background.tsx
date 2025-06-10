@@ -489,7 +489,7 @@ return (
 
         {}
         <Button 
-          className="fixed bottom-20 right-4 bg-white text-[#131313] rounded-lg h-12 px-6 sm:hidden z-40"
+          className="fixed bottom-20 right-4 bg-white hover:bg-[#f5f5f5] text-black rounded-lg h-12 px-6 sm:hidden z-40 "
           onClick={handleFinish}
         >
           Finish

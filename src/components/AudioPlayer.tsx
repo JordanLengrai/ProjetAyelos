@@ -103,10 +103,10 @@ export const AudioPlayer: React.FC = () => {
         <Button
           variant="ghost"
           size="icon"
-          className="h-6 w-6 p-0"
+          className="h-10 w-10 p-0 hover:bg-[#404040] rounded-full"
           onClick={() => fileInputRef.current?.click()}
         >
-          <div className="relative h-6 w-6 bg-[url(/frame-1.svg)] hover:bg-[#404040]" />
+          <div className="relative h-6 w-6 bg-[url(/frame-1.svg)] " />
         </Button>
 
         <Button
@@ -151,20 +151,20 @@ export const AudioPlayer: React.FC = () => {
   <Button
     variant="ghost"
     size="icon"
-    className="h-6 w-6 p-0 hover:bg-[#404040]"
+    className="h-10 w-10 p-0 hover:bg-[#404040] rounded-full"
     onClick={() => skipTime(-3)}
   >
     {/* SVG pour reculer de 3s (déjà existant) */}
-    <img src="../public/go_backward.png" alt="" width={38} height={38} />
+    <img src="../public/go_backward.png" alt="" width={24} height={24} />
   </Button>
   <Button
     variant="ghost"
     size="icon"
-    className="h-6 w-6 p-0 hover:bg-[#404040]"
+    className="h-10 w-10 p-0 hover:bg-[#404040] rounded-full"
     onClick={() => skipTime(3)}
   >
     {/* SVG pour avancer de 3s (fourni par l’utilisateur) */}
-    <img src="../public/go_forward.png" alt="" width={38} height={38} />
+    <img src="../public/go_forward.png" alt="" width={24} height={24} />
   </Button>
 </div>
     </div>
